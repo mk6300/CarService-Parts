@@ -2,11 +2,15 @@ package carservice.carserviceparts.model.dto;
 
 import java.util.UUID;
 
+
 public class PartDTO {
     private Long id;
     private String name;
-    private double price;
+    private Double price;
     private UUID supplierId;
+
+    public PartDTO() {
+    }
 
     public Long getId() {
         return id;

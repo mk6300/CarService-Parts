@@ -2,8 +2,12 @@ package carservice.carserviceparts.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.JdbcTypeCode;
 
 import java.util.UUID;
+
+import static java.sql.Types.VARCHAR;
 
 @Entity
 @Table(name = "parts")
@@ -14,11 +18,10 @@ public class Part {
 
         @NotEmpty
         private String name;
-
-        @NotEmpty
-        private double price;
-
-        @NotEmpty
+        @NotNull
+        private Double price;
+        @NotNull
+        @JdbcTypeCode(VARCHAR)
         private UUID supplierId;
 
     public Long getId() {

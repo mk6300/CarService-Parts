@@ -4,11 +4,15 @@ import java.util.UUID;
 
 public class AddPartDTO {
     private String name;
-    private double price;
+    private Double price;
+
     private UUID supplierId;
 
     public String getName() {
         return name;
+    }
+
+    public AddPartDTO() {
     }
 
     public double getPrice() {
@@ -21,5 +25,13 @@ public class AddPartDTO {
 
     public void setSupplierId(UUID supplierId) {
         this.supplierId = supplierId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
