@@ -16,13 +16,15 @@ public class Part {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @NotEmpty
+        @Column(nullable = false)
         private String name;
-        @NotNull
+        @Column(nullable = false)
         private Double price;
-        @NotNull
+        @Column(nullable = false)
         @JdbcTypeCode(VARCHAR)
         private UUID supplierId;
+        @Column (nullable = false)
+        private String description;
 
     public Long getId() {
         return id;

@@ -8,6 +8,7 @@ public class PartDTO {
     private String name;
     private Double price;
     private UUID supplierId;
+    private String description;
 
     public PartDTO() {
     }
@@ -42,5 +43,18 @@ public class PartDTO {
 
     public void setSupplierId(UUID supplierId) {
         this.supplierId = supplierId;
+
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
