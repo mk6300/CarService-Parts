@@ -29,7 +29,7 @@ public class PartDTO {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 

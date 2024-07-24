@@ -48,16 +48,12 @@ public class PartServiceImpl implements PartService {
         part.setName(addPartDTO.getName());
         part.setPrice(addPartDTO.getPrice());
         part.setSupplierId(addPartDTO.getSupplierId());
+        part.setDescription(addPartDTO.getDescription());
         partRepository.save(part);
         return map(part);
     }
 
     private PartDTO map(Part part) {
-        PartDTO partDTO = new PartDTO();
-        partDTO.setId(part.getId());
-        partDTO.setName(part.getName());
-        partDTO.setPrice(part.getPrice());
-        partDTO.setSupplierId(part.getSupplierId());
-        return partDTO;
+                return modelMapper.map(part, PartDTO.class);
     }
 }

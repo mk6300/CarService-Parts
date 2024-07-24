@@ -28,7 +28,7 @@ public class AddPartDTO {
     public AddPartDTO() {
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -44,14 +44,9 @@ public class AddPartDTO {
         this.name = name;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public void setPrice(Double price) {
         this.price = price;
     }
-
     public String getDescription() {
         return description;
     }
