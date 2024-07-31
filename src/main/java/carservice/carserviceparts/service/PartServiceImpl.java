@@ -7,8 +7,10 @@ import carservice.carserviceparts.repository.PartRepository;
 import carservice.carserviceparts.service.exception.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,6 +40,7 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
+    @Transactional
     public void deletePart(Long id) {
         partRepository.deleteById(id);
     }
@@ -51,6 +54,26 @@ public class PartServiceImpl implements PartService {
         part.setDescription(addPartDTO.getDescription());
         partRepository.save(part);
         return map(part);
+    }
+
+    @Override
+    @Transactional
+    public PartDTO editPart(PartDTO partDTO) {
+        Part part = partRepository.findById(partDTO.getId())
+                .orElseThrow(ObjectNotFoundException::new);
+        part.setName(partDTO.getName());
+        part.setPrice(partDTO.getPrice());
+        part.setSupplierId(partDTO.getSupplierId());
+        part.setDescription(partDTO.getDescription());
+        partRepository.save(part);
+        return map(part);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAllPartsFromSupplier(UUID id) {
+        partRepository.deleteAllBySupplierId(id);
+
     }
 
     private PartDTO map(Part part) {

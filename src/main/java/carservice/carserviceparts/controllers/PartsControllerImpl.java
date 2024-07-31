@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class PartsControllerImpl implements PartController {
@@ -35,5 +36,16 @@ public class PartsControllerImpl implements PartController {
     @Override
     public ResponseEntity<PartDTO> addPart(AddPartDTO addPartDTO) {
         return ResponseEntity.ok(partService.addPart(addPartDTO));
+    }
+
+    @Override
+    public ResponseEntity<PartDTO> editPart(PartDTO partDTO) {
+        return ResponseEntity.ok(partService.editPart(partDTO));
+    }
+
+    @Override
+    public ResponseEntity<PartDTO> deleteAllPartsFromSupplier(UUID id) {
+        partService.deleteAllPartsFromSupplier(id);
+        return ResponseEntity.ok().build();
     }
 }
