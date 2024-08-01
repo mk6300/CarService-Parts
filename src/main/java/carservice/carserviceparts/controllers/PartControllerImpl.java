@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-public class PartsControllerImpl implements PartController {
+public class PartControllerImpl implements PartController {
     private final PartService partService;
 
-    public PartsControllerImpl(PartService partService) {
+    public PartControllerImpl(PartService partService) {
         this.partService = partService;
     }
 

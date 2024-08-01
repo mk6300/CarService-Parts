@@ -14,7 +14,6 @@ public class Part {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
-
         @Column(nullable = false)
         private String name;
         @Column(nullable = false)
@@ -24,6 +23,16 @@ public class Part {
         private UUID supplierId;
         @Column (nullable = false)
         private String description;
+
+    public Part() {
+    }
+
+    public Part(String name, Double price, UUID supplierId, String description) {
+        this.name = name;
+        this.price = price;
+        this.supplierId = supplierId;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
