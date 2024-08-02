@@ -13,6 +13,9 @@ public class PartDTO {
     public PartDTO() {
     }
 
+    public PartDTO(Long id, String name, double price, UUID uuid, String description) {
+    }
+
     public Long getId() {
         return id;
     }

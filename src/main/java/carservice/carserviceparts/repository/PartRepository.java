@@ -9,5 +9,5 @@ import java.util.UUID;
 @Repository
 public interface PartRepository extends JpaRepository<Part, Long> {
 
-    void deleteAllBySupplierId(UUID id);
+     void deleteAllBySupplierId(UUID id);
 }
