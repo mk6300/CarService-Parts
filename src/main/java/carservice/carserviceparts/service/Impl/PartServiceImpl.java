@@ -1,9 +1,10 @@
-package carservice.carserviceparts.service;
+package carservice.carserviceparts.service.Impl;
 
 import carservice.carserviceparts.model.dto.AddPartDTO;
 import carservice.carserviceparts.model.dto.PartDTO;
 import carservice.carserviceparts.model.entity.Part;
 import carservice.carserviceparts.repository.PartRepository;
+import carservice.carserviceparts.service.PartService;
 import carservice.carserviceparts.service.exception.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,9 @@ public class PartServiceImpl implements PartService {
         partRepository.deleteById(id);
     }
 
+
     @Override
+    @Transactional
     public PartDTO addPart(AddPartDTO addPartDTO) {
         Part part = new Part() ;
         part.setName(addPartDTO.getName());

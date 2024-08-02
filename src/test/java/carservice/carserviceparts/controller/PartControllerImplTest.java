@@ -16,15 +16,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.UUID;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@WithMockUser (username = "admin", roles = {"USER", "ADMIN"})
 public class PartControllerImplTest {
 
     @Autowired
@@ -92,7 +93,7 @@ public class PartControllerImplTest {
 
         mockMvc.perform(delete("/parts/{id}", actual.getId())
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
 
         mockMvc.perform(get("/parts/{id}", actual.getId())
                         .contentType(MediaType.APPLICATION_JSON))
@@ -115,7 +116,7 @@ public class PartControllerImplTest {
         mockMvc.perform(post("/parts/add-part")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(actual)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
 
     @Test
@@ -141,9 +142,6 @@ public class PartControllerImplTest {
 
     @Test
     public void testEditPartNotFound() throws Exception {
-        var actual = partRepository.save(
-                new Part("name", 1.0, UUID.randomUUID(), "description")
-        );
         var expected = new PartDTO();
         expected.setId(1000000L);
         mockMvc.perform(put("/parts/edit-part")

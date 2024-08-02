@@ -5,6 +5,7 @@ import carservice.carserviceparts.model.dto.PartDTO;
 import carservice.carserviceparts.service.PartService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,7 +20,10 @@ public class PartControllerImpl implements PartController {
 
     @Override
     public ResponseEntity<List<PartDTO>> getAllParts() {
-        return ResponseEntity.ok(partService.getAllParts());
+
+        return ResponseEntity.ok(
+                partService.getAllParts()
+        );
     }
 
     @Override
@@ -30,12 +34,21 @@ public class PartControllerImpl implements PartController {
     @Override
     public ResponseEntity<PartDTO> deletePart(Long id) {
         partService.deletePart(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @Override
     public ResponseEntity<PartDTO> addPart(AddPartDTO addPartDTO) {
-        return ResponseEntity.ok(partService.addPart(addPartDTO));
+
+        PartDTO partDTO = partService.addPart(addPartDTO);
+        return ResponseEntity.created(
+                        ServletUriComponentsBuilder
+                                .fromCurrentRequest()
+                                .path("/{id}")
+                                .buildAndExpand(partDTO.getId())
+                                .toUri()
+                )
+                .body(partDTO);
     }
 
     @Override

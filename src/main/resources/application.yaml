@@ -29,3 +29,6 @@ logging:
     blog: WARN
 server:
   port: 8081
+
+jwt:
+  secret: ${JWT_KEY:maJGWSnZJTJ3Uo3CMo6FMUR7Kif56oX39cc0NMpPvrPFwvfLcAG}
