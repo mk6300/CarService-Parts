@@ -26,7 +26,7 @@ import java.util.UUID;
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser (username = "admin", roles = {"USER", "ADMIN"})
-public class PartControllerImplTest {
+public class PartControllerTest {
 
     @Autowired
     private PartRepository partRepository;

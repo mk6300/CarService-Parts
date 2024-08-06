@@ -5,7 +5,7 @@ import carservice.carserviceparts.model.dto.PartDTO;
 import carservice.carserviceparts.model.entity.Part;
 import carservice.carserviceparts.repository.PartRepository;
 import carservice.carserviceparts.service.PartService;
-import carservice.carserviceparts.service.exception.ObjectNotFoundException;
+import carservice.carserviceparts.service.exception.PartNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +37,7 @@ public class PartServiceImpl implements PartService {
     public PartDTO getPartById(Long id) {
         return partRepository.findById(id)
                 .map(this::map)
-                .orElseThrow(ObjectNotFoundException::new);
+                .orElseThrow(PartNotFoundException::new);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class PartServiceImpl implements PartService {
     @Transactional
     public PartDTO editPart(PartDTO partDTO) {
         Part part = partRepository.findById(partDTO.getId())
-                .orElseThrow(ObjectNotFoundException::new);
+                .orElseThrow(PartNotFoundException::new);
         part.setName(partDTO.getName());
         part.setPrice(partDTO.getPrice());
         part.setSupplierId(partDTO.getSupplierId());
